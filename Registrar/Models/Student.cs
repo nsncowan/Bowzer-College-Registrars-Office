@@ -11,6 +11,5 @@ namespace Registrar.Models
     public string Name { get; set; }
     public string DateOE { get; set; }
     public List<StudentCourse> JoinEntities {get;}
-
   }
 }

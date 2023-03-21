@@ -42,5 +42,39 @@ namespace Registrar.Controllers
                               .FirstOrDefault(Course => Course.CourseId == id);
       return View(thisCourse);
     }
+
+    public ActionResult AddStudent(int id)
+    {
+      Course thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      return View(thisCourse);
+    }
+
+    [HttpPost]
+    public ActionResult AddStudent(Course course, int studentId)
+    {
+      #nullable enable
+      StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(studentCourse => (studentCourse.StudentId == studentId && studentCourse.CourseId == course.CourseId));
+      #nullable disable
+      if(joinEntity == null && studentId != 0)
+      {
+        _db.StudentCourses.Add(new StudentCourse() {StudentId = studentId, CourseId = course.CourseId});
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new {id = course.CourseId});
+    }
   }
 }
+
+    // public ActionResult AddCourse(Student student, int courseId)
+    // {
+    //    #nullable enable
+    //    StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(studentCourse => (studentCourse.CourseId == courseId && studentCourse.StudentId == student.StudentId));
+    //    #nullable disable
+    //    if(joinEntity == null && courseId !=0)
+    //    {
+    //     _db.StudentCourses.Add(new StudentCourse() {CourseId = courseId, StudentId = student.StudentId});
+    //     _db.SaveChanges();
+    //    }
+    //    return RedirectToAction("Details", new { id = student.StudentId});
+    // }
