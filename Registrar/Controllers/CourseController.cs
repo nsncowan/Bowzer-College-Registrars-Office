@@ -58,23 +58,10 @@ namespace Registrar.Controllers
       #nullable disable
       if(joinEntity == null && studentId != 0)
       {
-        _db.StudentCourses.Add(new StudentCourse() {StudentId = studentId, CourseId = course.CourseId});
+        _db.StudentCourses.Add(new StudentCourse() {CourseId = course.CourseId, StudentId = studentId});
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new {id = course.CourseId});
     }
   }
 }
-
-    // public ActionResult AddCourse(Student student, int courseId)
-    // {
-    //    #nullable enable
-    //    StudentCourse? joinEntity = _db.StudentCourses.FirstOrDefault(studentCourse => (studentCourse.CourseId == courseId && studentCourse.StudentId == student.StudentId));
-    //    #nullable disable
-    //    if(joinEntity == null && courseId !=0)
-    //    {
-    //     _db.StudentCourses.Add(new StudentCourse() {CourseId = courseId, StudentId = student.StudentId});
-    //     _db.SaveChanges();
-    //    }
-    //    return RedirectToAction("Details", new { id = student.StudentId});
-    // }

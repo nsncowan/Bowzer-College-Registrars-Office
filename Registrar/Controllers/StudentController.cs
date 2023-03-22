@@ -26,7 +26,21 @@ namespace Registrar.Controllers
                                       .Include(student => student.JoinEntities)
                                       .ThenInclude(studentCourse => studentCourse.Course)
                                       .FirstOrDefault(student => student.StudentId == id);
+      ViewBag.PassFail = new SelectList(_db.StudentCourses, "StudentCourseId", "PassFail");
       return View(thisStudent);
+    }
+
+    [HttpPost, ActionName("Details")]
+    public ActionResult SetPassFail(int id)
+    {
+      StudentCourse thisStudentCourse = _db.StudentCourses.FirstOrDefault(thisStudentCourse => thisStudentCourse.StudentCourseId == id);
+      if(thisStudentCourse.PassFail == false)
+      {
+      thisStudentCourse.PassFail = true;
+      }
+      thisStudentCourse.PassFail = false;
+      _db.SaveChanges();
+      return RedirectToAction("Details");
     }
 
     public ActionResult Create()

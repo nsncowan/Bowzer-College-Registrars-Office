@@ -21,7 +21,14 @@ else
   <ul>
     @foreach(StudentCourse studentCourse in Model.JoinEntities)
     {
-      <li><a href="#" class="link-secondary">@studentCourse.Course.Name</a></li>
+      <li>@studentCourse.Course.Name | @studentCourse.PassFail</li>
+      @using  (Html.BeginForm())
+      {
+        @*@Html.HiddenFor(model => model.JoinEntities)*@
+        @*@Html.HiddenFor(model => )*@
+        @Html.Hidden("id", studentCourse.StudentCourseId)
+        <button type="submit" value="SetPassFail" class="btn btn-primary" name="buttonType">Pass Or Fail</button>
+      }
     }
   </ul>
 }

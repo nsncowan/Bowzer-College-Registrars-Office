@@ -19,8 +19,9 @@ else
   <ol>
     @foreach(StudentCourse studentCourse in Model.JoinEntities)
     {
-      <li>@studentCourse.Student.Name</li>
+      <li>@studentCourse.Student.Name </li>
+      
     }
   </ol>
 }
-<p>@Html.ActionLink("Add student to course", "AddStudent")</p>
+<p>@Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId})</p>
