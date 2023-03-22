@@ -34,13 +34,16 @@ namespace Registrar.Controllers
     public ActionResult SetPassFail(int id)
     {
       StudentCourse thisStudentCourse = _db.StudentCourses.FirstOrDefault(thisStudentCourse => thisStudentCourse.StudentCourseId == id);
+      Student thisStudent = _db.Students.FirstOrDefault(thisStudent => thisStudent.StudentId == thisStudentCourse.StudentId);
       if(thisStudentCourse.PassFail == false)
       {
       thisStudentCourse.PassFail = true;
-      }
+      } else {
       thisStudentCourse.PassFail = false;
+      }
+      // _db.StudentCourses.Update(thisStudentCourse);
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new {id = thisStudent.StudentId});
     }
 
     public ActionResult Create()
