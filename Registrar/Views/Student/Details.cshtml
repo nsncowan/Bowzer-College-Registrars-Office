@@ -24,16 +24,30 @@ else
       <li>@studentCourse.Course.Name | @studentCourse.PassFail</li>
       @using  (Html.BeginForm())
       {
-        @*@Html.HiddenFor(model => model.JoinEntities)*@
-        @*@Html.HiddenFor(model => )*@
-        @Html.HiddenFor(x => studentCourse.StudentCourseId)
-        @*@Html.Hidden("id", studentCourse.StudentCourseId)*@
+        @Html.HiddenFor(model => studentCourse.StudentCourseId)
+                        @*@Html.HiddenFor(model => model.JoinEntities)*@
+                        @*@Html.Hidden("id", studentCourse.StudentCourseId)*@
         <button type="submit" class="btn btn-primary">Pass Or Fail</button>
       }
     }
   </ul>
 }
-
+@*  <h3>Courses:</h3>
+  <ul>
+    @foreach(StudentCourse studentCourse in Model.JoinEntities)
+    {
+      <li>@studentCourse.Course.Name | @studentCourse.PassFail</li>
+      @using  (Html.BeginForm())
+      {
+        xxx@Html.HiddenFor(model => model.JoinEntities)
+        xxx@Html.HiddenFor(model => )
+        @Html.Hidden("id", studentCourse.StudentCourseId)
+        <button type="submit" value="SetPassFail" class="btn btn-primary" name="buttonType">Pass Or Fail</button>
+      }
+    }
+  </ul>
+} 
+*@
 <p><a href="#" class="link-secondary">@Html.ActionLink("Add a course for this student", "AddCourse", new {id = Model.StudentId})</a></p>
 <p><a href="#" class="link-secondary">@Html.ActionLink("Edit student information", "Edit", new {id= Model.StudentId})</a></p>
 <p><a href="#" class="link-secondary">@Html.ActionLink("Delete student", "Delete", new {id = Model.StudentId})</a></p>

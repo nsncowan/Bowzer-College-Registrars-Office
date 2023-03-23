@@ -45,7 +45,18 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = thisStudent.StudentId});
     }
-
+/* [HttpPost, ActionName("Details")]
+    public ActionResult SetPassFail(int id)
+    {
+      StudentCourse thisStudentCourse = _db.StudentCourses.FirstOrDefault(thisStudentCourse => thisStudentCourse.StudentCourseId == id);
+      if(thisStudentCourse.PassFail == false)
+      {
+      thisStudentCourse.PassFail = true;
+      }
+      thisStudentCourse.PassFail = false;
+      _db.SaveChanges();
+      return RedirectToAction("Details");
+    } */
     public ActionResult Create()
     {
       return View();
