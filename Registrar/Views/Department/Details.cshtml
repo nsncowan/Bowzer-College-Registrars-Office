@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Registrar.Models;
+@model Registrar.Models.Department;
+
+<h1>Department Details</h1>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)<h3>
+
+
+@if(Model.Courses.Count == 0)
+{
+  <h3>No Courses have been added to this Department yet.</h3>
+}
+else
+{
+  <h3>Department Courses:</h3>
+  <ol>
+    @foreach(Course course in Model.Courses)
+    {
+      <li>@course.Name </li>
+      
+    }
+  </ol>
+}

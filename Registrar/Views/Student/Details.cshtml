@@ -8,7 +8,7 @@
 
 <h2>Student Details</h2>
 
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(stuff => stuff.Name): @Html.DisplayFor(model => model.Name)</h3>
 <h3>Date of Enrollement: @Html.DisplayFor(model => model.DateOE)</h3>
 
 @if(Model.JoinEntities.Count == 0)
@@ -24,6 +24,7 @@ else
       <li>@studentCourse.Course.Name | @studentCourse.PassFail</li>
       @using  (Html.BeginForm())
       {
+        @*@Html.HiddenFor(model => model.JoinEntities[0].StudentCourseId)*@
         @Html.HiddenFor(model => studentCourse.StudentCourseId)
                         @*@Html.HiddenFor(model => model.JoinEntities)*@
                         @*@Html.Hidden("id", studentCourse.StudentCourseId)*@
